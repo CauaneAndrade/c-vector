@@ -10,35 +10,24 @@ A saída será 18, pois (1. 2) 4 + (0. 2) 3 + (0. 2) 2 + (1. 2) 1 + (0. 
 */
 
 #include <stdio.h>
+#include <math.h>//necessária para usar as funções matemáticas
 
-int transforma_binario_decimal(int num)
-{
-    int pot2,  // guardara uma potencia de 2
-        final; // numero dado convertido para base 10
-
-
-    // inicializacoes
-    final = 0;
-    pot2 = 1;
-
-    printf("%d na base 10 e': ", num);
-
-    while (num != 0)
-    {
-        final = final + num % 10 * pot2; // processa um digito binario
-        num = num / 10;
-        pot2 = pot2 * 2;
+int transforma_binario_decimal(int vetor[])
+{   
+    int result = 0, c = 1;
+    for (int i = 0; i < 5; i++) {
+        int este_num = vetor[5 - c];
+        c++;
+        int potencia = pow(2, i);
+        result += potencia * este_num;
     }
-    printf("%d\n", final);
-
-    return 0;
+    printf("resultado = %d\n", result);
 }
 
 int main()
 {
-    int num;   // numero dado (na base 2)
+    int vetor[5] = {1, 0, 0, 1, 0};
 
-    printf("Digite o numero a ser transformado da base 2 para a base 10: ");
-    scanf("%d", &num);
-    transforma_binario_decimal(num);
+
+    transforma_binario_decimal(vetor);
 }
